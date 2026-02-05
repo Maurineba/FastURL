@@ -91,4 +91,4 @@ Esta organização facilita a criação de testes automatizados e a manutenção
 
 ## 📝 Licença
 
-Projeto desenvolvido para fins de estudo. Sinta-se à vontade para utilizar e contribuir!
+Projeto desenvolvido para fins de estudo. Sinta-se à vontade para utilizar!
