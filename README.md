@@ -50,6 +50,7 @@ docker compose up -d
 Assim que os containers estiverem ativos, você poderá aceder à documentação interativa (Swagger) para testar todas as rotas:
 
 🔗 Swagger UI: http://127.0.0.1:8000/docs
+
 🗄️ Acesso ao Banco de Dados (Adminer)
 
 Para visualizar os dados de forma simples, utilize o Adminer que sobe junto com a aplicação:
