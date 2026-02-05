@@ -78,6 +78,16 @@ docker compose exec api pytest
 ```
 Pronto! Testes executados.
 
+## 🏗️ Arquitetura do Projeto
+
+O FastURL foi estruturado utilizando **Arquitetura em Camadas** (Layered Architecture), o que permite uma clara separação de responsabilidades:
+
+* **Schemas:** Definição das estruturas de dados para entrada e saída via Pydantic.
+* **Routers:** Gerenciamento das requisições HTTP e roteamento.
+* **Services:** Onde reside o "coração" da aplicação e as regras de encurtamento.
+* **Repositories:** Comunicação direta com o banco de dados via SQLAlchemy.
+
+Esta organização facilita a criação de testes automatizados e a manutenção do código a longo prazo.
 
 📝 Licença
 
