@@ -32,9 +32,9 @@ DB_PORT=5432
 
 DB_URL=postgresql+asyncpg://shortener_admin:shortener@db:5432/shortener_db
 ```
-2. Execução com Docker
+### 2. Execução com Docker
 
-O FastURL é totalmente dockerizado. Se ainda não possui o Docker, instale-o através do link oficial: Download Docker.
+O FastURL é totalmente dockerizado. Se ainda não possui o Docker, instale-o através do link oficial: [Download Docker.](https://www.docker.com/)
 
 Com o Docker instalado, abra o terminal na pasta raiz do projeto e execute os comandos abaixo:
 Bash
