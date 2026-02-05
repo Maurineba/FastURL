@@ -69,6 +69,16 @@ Utilize estas credenciais para o login:
 
     Base de dados: shortener_db
 
+## 🧪 Testes 
+
+Ao subir os containers você podera executar os testes!
+Entre no terminal interativo do container da aplicação com o comando:
+```bash
+docker compose exec api pytest
+```
+Pronto! Testes executados.
+
+
 📝 Licença
 
 Projeto desenvolvido para fins de estudo. Sinta-se à vontade para utilizar e contribuir!
