@@ -23,7 +23,7 @@ Antes de subir os containers, crie um arquivo chamado `.env` na raiz do projeto 
 APP_NAME=URL-SHORTENER
 APP_COMPANY=URL-SHORTENER-COMPANY
 APP_VERSION=1.0.0
-APP_BASE_URL="[http://127.0.0.1:8000/](http://127.0.0.1:8000/)"
+APP_BASE_URL="http://127.0.0.1:8000/" (mantenha esse)
 
 DB_NAME=shortener_db
 DB_USER=shortener_admin
