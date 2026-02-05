@@ -37,15 +37,15 @@ DB_URL=postgresql+asyncpg://shortener_admin:shortener@db:5432/shortener_db
 O FastURL é totalmente dockerizado. Se ainda não possui o Docker, instale-o através do link oficial: [Download Docker.](https://www.docker.com/)
 
 Com o Docker instalado, abra o terminal na pasta raiz do projeto e execute os comandos abaixo:
-Bash
-
+```bash
 # Construir a imagem do projeto sem cache
 docker compose build --no-cache
-
+```
+```bash
 # Iniciar os serviços em segundo plano
 docker compose up -d
-
-📖 Documentação da API
+```
+## 📖 Documentação da API
 
 Assim que os containers estiverem ativos, você poderá aceder à documentação interativa (Swagger) para testar todas as rotas:
 
