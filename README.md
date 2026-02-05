@@ -1,15 +1,15 @@
 # ⚡ FastURL
 
-O **FastURL** é uma API de alto desempenho para encurtamento de URLs, desenvolvida com **Python** e **FastAPI**. O projeto foi construído focado em eficiência, utilizando operações assíncronas para garantir respostas rápidas e escalabilidade.
+O **FastURL** é uma API para encurtamento de URLs, desenvolvida com **Python** e **FastAPI**.
 
 ---
 
 ## 🚀 Tecnologias
 - **Python 3.10+**
-- **FastAPI** (Framework web focado em performance)
-- **PostgreSQL** (Banco de dados relacional)
-- **SQLAlchemy + Asyncpg** (Acesso assíncrono ao banco de dados)
-- **Docker & Docker Compose** (Containerização)
+- **FastAPI** 
+- **PostgreSQL** 
+- **SQLAlchemy + Asyncpg**
+- **Docker & Docker Compose** 
 - **Adminer** (Interface gráfica para o banco de dados)
 
 ---
