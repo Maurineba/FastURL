@@ -80,7 +80,7 @@ Pronto! Testes executados.
 
 ## 🏗️ Arquitetura do Projeto
 
-O FastURL foi estruturado utilizando **Arquitetura em Camadas** (Layered Architecture), o que permite uma clara separação de responsabilidades:
+O FastURL foi estruturado utilizando **Arquitetura em Camadas**, o que permite uma clara separação de responsabilidades:
 
 * **Schemas:** Definição das estruturas de dados para entrada e saída via Pydantic.
 * **Routers:** Gerenciamento das requisições HTTP e roteamento.
@@ -89,6 +89,6 @@ O FastURL foi estruturado utilizando **Arquitetura em Camadas** (Layered Archite
 
 Esta organização facilita a criação de testes automatizados e a manutenção do código a longo prazo.
 
-📝 Licença
+## 📝 Licença
 
 Projeto desenvolvido para fins de estudo. Sinta-se à vontade para utilizar e contribuir!
