@@ -148,6 +148,31 @@ OLLAMA_MODEL=llama3.2:3b
 URL_EXPIRATION_DAYS=7
 ```
 
+### Sobre o `APP_BASE_URL` e o QR Code
+
+A variável `APP_BASE_URL` define a base usada para gerar as URLs encurtadas e os QR Codes.
+
+Em ambiente local, ela pode ser configurada assim:
+
+~~~env
+APP_BASE_URL=http://127.0.0.1:8000
+
+Isso funciona no próprio computador, mas pode não funcionar ao ler o QR Code pelo celular, pois 127.0.0.1 no celular aponta para o próprio celular, não para a máquina onde a API está rodando.
+
+Para testar o QR Code em outro dispositivo, utilize uma URL acessível externamente, como um túnel do ngrok:
+
+ngrok http 8000
+
+Depois configure o .env com a URL gerada:
+
+APP_BASE_URL=https://seu-dominio-ngrok.ngrok-free.dev
+
+Também é possível usar o IP da máquina na rede local, caso o computador e o celular estejam conectados à mesma rede:
+
+APP_BASE_URL=http://192.168.0.10:8000
+
+A prévia com IA não depende diretamente do ngrok. Ela pode receber uma URL original ou uma URL encurtada. Quando recebe uma URL encurtada, a aplicação segue o redirecionamento e extrai o conteúdo da página final.
+
 ### 3. Suba os containers
 
 ```bash
