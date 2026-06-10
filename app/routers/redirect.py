@@ -11,7 +11,7 @@ from fastapi import APIRouter, Depends, HTTPException
 
 router = APIRouter(
    prefix="/r",
-   tags=["redirect"]
+   tags=["Redirect"]
 )
 
 

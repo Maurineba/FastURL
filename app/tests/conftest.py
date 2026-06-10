@@ -38,6 +38,8 @@ async def create_test_database():
    async with engine_test.begin() as conn:
       await conn.run_sync(Base.metadata.drop_all)
 
+   await engine_test.dispose()
+
 
 @pytest.fixture
 async def db_session():

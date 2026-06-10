@@ -31,7 +31,7 @@ services:
 
   adminer:
     image: adminer
-    container_name: shortener_adminer
+    container_name: shortener_adm
     restart: always
     ports:
       - "8080:8080"

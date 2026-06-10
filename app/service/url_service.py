@@ -1,13 +1,13 @@
 import string
 import random
+import qrcode
 from datetime import datetime, timedelta, timezone
 
 from app.core.settings import get_settings
 from app.repositories.url_repository import UrlRepository
 from app.models.url_model import Url
 from app.schemas.url_schema import (
-   UrlCreate,
-   UrlResponse
+   UrlCreate
 )
 from app.exceptions.url import(
    UrlAlreadyExists,
@@ -31,7 +31,7 @@ class UrlService():
       self.url_repo = UrlRepository(db)
       self.base_url = settings.app.base_url
       self.CODE_LENGTH = 8
-      self.url_expiration_time = 7 # dias
+      self.url_expiration_time = settings.url.expiration_days 
 
    async def _generate_unique_code(self):
       attempts = 1
@@ -56,11 +56,11 @@ class UrlService():
       try:
          existing_url = await self.url_repo.get_by_url(url_data.url)
          if existing_url:
-            raise UrlAlreadyExists()
+            return existing_url
 
          code = await self._generate_unique_code()
 
-         short_url = self.base_url + "r/" + code
+         short_url = self.base_url + "/r/" + code
 
          url_model = Url(
             url = url_data.url,
@@ -89,7 +89,11 @@ class UrlService():
    async def verify_expiration(self, url: Url):
       now = datetime.now(timezone.utc)
 
-      expiration_date = url.created_at + timedelta(days=self.url_expiration_time)
+      created_at = url.created_at
+      if created_at.tzinfo is None:
+         created_at = created_at.replace(tzinfo=timezone.utc)
+
+      expiration_date = created_at + timedelta(days=self.url_expiration_time)
 
       return now >= expiration_date, expiration_date
 

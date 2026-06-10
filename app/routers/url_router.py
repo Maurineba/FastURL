@@ -13,7 +13,7 @@ from fastapi import APIRouter, Depends
 
 router = APIRouter(
    prefix="/url",
-   tags=["url"]
+   tags=["Url"]
 )
 
 
@@ -29,7 +29,7 @@ async def create_short_url(
    """
    Gera uma URL encurtada.
 
-   - **url**: URL que voce deseja encurtar. exemplo: https://youtube.com/sadjAKJskd21123
+   - **url**: URL que voce deseja encurtar. exemplo: https://www.youtube.com/watch?v=KhDgtEwlrcU
 
    """
    return await url_service.create_short_url(url)
