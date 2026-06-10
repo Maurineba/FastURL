@@ -1,15 +1,13 @@
-````md
 <div align="center">
 
 # ⚡ FastURL
 
 **API REST para encurtamento de URLs com estatísticas, QR Code e prévia automática com IA**
 
-![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=flat&logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?style=flat&logo=fastapi&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?style=flat&logo=postgresql&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=flat&logo=docker&logoColor=white)
-![Pytest](https://img.shields.io/badge/Pytest-Testes-0A9EDC?style=flat&logo=pytest&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=flat\&logo=python\&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?style=flat\&logo=fastapi\&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?style=flat\&logo=postgresql\&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=flat\&logo=docker\&logoColor=white)
 
 </div>
 
@@ -19,64 +17,60 @@
 
 FastURL é uma API REST desenvolvida com **Python** e **FastAPI** para encurtamento e gerenciamento de URLs.
 
-Além das funcionalidades tradicionais de um encurtador, como redirecionamento, estatísticas e expiração de links, o projeto também possui geração de QR Code e uma funcionalidade experimental de **prévia automática de links com IA local** usando Ollama.
+O projeto permite criar links encurtados, redirecionar para a URL original, registrar estatísticas de acesso, gerar QR Codes e criar prévias automáticas de links utilizando IA local com Ollama.
 
-O projeto foi desenvolvido com foco em boas práticas de backend, arquitetura em camadas, persistência com banco relacional, tratamento centralizado de erros, testes automatizados e organização de responsabilidades.
+A aplicação foi desenvolvida com foco em **arquitetura em camadas**, separação de responsabilidades, persistência com banco relacional, tratamento centralizado de erros e testes automatizados.
 
 ---
 
 ## Tecnologias utilizadas
 
-- **Python**
-- **FastAPI**
-- **PostgreSQL**
-- **SQLAlchemy Async**
-- **Alembic**
-- **Pydantic**
-- **Docker**
-- **Docker Compose**
-- **Ollama**
-- **BeautifulSoup**
-- **httpx**
-- **Pytest**
-- **Adminer**
+* **FastAPI** — criação da API REST
+* **SQLAlchemy Async** — ORM assíncrono
+* **PostgreSQL** — banco de dados relacional
+* **Alembic** — controle de migrations
+* **Pydantic** — validação de dados
+* **Docker + Docker Compose** — containerização
+* **Ollama** — execução local do modelo de IA
+* **BeautifulSoup + httpx** — extração de conteúdo web
+* **Pytest** — testes automatizados
+* **Adminer** — interface visual para o banco
 
 ---
 
 ## Funcionalidades
 
-- Criação de URLs encurtadas
-- Redirecionamento para a URL original
-- Contagem automática de acessos
-- Consulta de estatísticas por código
-- Expiração automática de URLs
-- Geração de QR Code para a URL encurtada
-- Geração de prévia automática com IA local
-- Extração de conteúdo web com BeautifulSoup
-- Tratamento centralizado de erros
-- Configuração por variáveis de ambiente
-- Testes automatizados com Pytest
+* Encurtamento de URLs
+* Redirecionamento para a URL original
+* Contador de acessos
+* Estatísticas por URL
+* Expiração automática dos links
+* Geração de QR Code
+* Prévia automática de links com IA local
+* Validação de URLs
+* Tratamento centralizado de erros
+* Testes automatizados
 
 ---
 
 ## Arquitetura
 
-O projeto segue uma arquitetura em camadas, separando responsabilidades entre rotas, serviços, repositórios, schemas, models e tratamento de erros.
+O projeto segue uma arquitetura em camadas:
 
 ```txt
 app/
 ├── ai/             # Cliente Ollama e prompts de IA
 ├── core/           # Configurações da aplicação
-├── db/             # Sessão, base e dependências do banco
-├── exceptions/     # Exceções customizadas e handlers globais
+├── db/             # Configuração e dependências do banco
+├── exceptions/     # Exceções customizadas e handlers
 ├── extractors/     # Extração de conteúdo web
 ├── models/         # Models SQLAlchemy
-├── repositories/   # Acesso ao banco de dados
+├── repositories/   # Camada de acesso ao banco
 ├── routers/        # Endpoints da API
 ├── schemas/        # Schemas Pydantic
 ├── service/        # Regras de negócio
 └── tests/          # Testes automatizados
-````
+```
 
 Fluxo principal da aplicação:
 
@@ -84,10 +78,29 @@ Fluxo principal da aplicação:
 Request → Router → Service → Repository → Database
 ```
 
-Fluxo da funcionalidade de IA:
+Fluxo da prévia com IA:
 
 ```txt
-URL → WebExtractor → Prompt → Ollama → Validação → Resposta
+URL → WebExtractor → Ollama → Validação → Resposta
+```
+
+---
+
+## Endpoints principais
+
+| Método | Rota                 | Descrição                                 |
+| ------ | -------------------- | ----------------------------------------- |
+| `POST` | `/url`               | Cria uma URL encurtada                    |
+| `GET`  | `/url/{code}`        | Retorna a URL original                    |
+| `GET`  | `/url/{code}/stats`  | Retorna estatísticas da URL               |
+| `GET`  | `/url/{code}/qrcode` | Gera o QR Code da URL encurtada           |
+| `GET`  | `/r/{code}`          | Redireciona para a URL original           |
+| `POST` | `/ai/summary`        | Gera uma prévia automática do link com IA |
+
+A documentação interativa fica disponível em:
+
+```txt
+http://127.0.0.1:8000/docs
 ```
 
 ---
@@ -100,16 +113,12 @@ URL → WebExtractor → Prompt → Ollama → Validação → Resposta
 * Docker Compose
 * Ollama instalado localmente, caso queira usar a funcionalidade de IA
 
----
-
 ### 1. Clone o repositório
 
 ```bash
 git clone https://github.com/seu-usuario/fasturl.git
 cd fasturl
 ```
-
----
 
 ### 2. Configure as variáveis de ambiente
 
@@ -119,7 +128,7 @@ Crie o arquivo `.env` com base no `.env.example`:
 cp .env.example .env
 ```
 
-Exemplo de configuração:
+Exemplo:
 
 ```env
 APP_NAME=FastURL
@@ -139,41 +148,29 @@ OLLAMA_MODEL=llama3.2:3b
 URL_EXPIRATION_DAYS=7
 ```
 
----
-
 ### 3. Suba os containers
 
 ```bash
 docker compose up --build
 ```
 
-As migrations são aplicadas automaticamente na inicialização, caso o projeto esteja configurado para isso no container.
+A API ficará disponível em:
 
----
+```txt
+http://127.0.0.1:8000
+```
 
-### 4. Acesse a aplicação
+O Adminer ficará disponível em:
 
-| Serviço | URL                          |
-| ------- | ---------------------------- |
-| API     | `http://127.0.0.1:8000`      |
-| Swagger | `http://127.0.0.1:8000/docs` |
-| Adminer | `http://127.0.0.1:8080`      |
-
-Credenciais do Adminer:
-
-| Campo         | Valor                  |
-| ------------- | ---------------------- |
-| Sistema       | PostgreSQL             |
-| Servidor      | `db`                   |
-| Usuário       | valor de `DB_USER`     |
-| Senha         | valor de `DB_PASSWORD` |
-| Base de dados | valor de `DB_NAME`     |
+```txt
+http://127.0.0.1:8080
+```
 
 ---
 
 ## Ollama
 
-A funcionalidade de prévia automática depende do Ollama em execução localmente.
+A funcionalidade de prévia automática depende do Ollama.
 
 Para baixar o modelo usado no projeto:
 
@@ -187,36 +184,11 @@ Para iniciar o Ollama:
 ollama serve
 ```
 
-No Docker, o projeto usa o host configurado em:
-
-```env
-OLLAMA_HOST=http://host.docker.internal:11434
-```
-
----
-
-## Endpoints principais
-
-| Método | Rota                 | Descrição                                 |
-| ------ | -------------------- | ----------------------------------------- |
-| `POST` | `/url`               | Cria uma URL encurtada                    |
-| `GET`  | `/url/{code}`        | Retorna a URL original                    |
-| `GET`  | `/url/{code}/stats`  | Retorna estatísticas da URL               |
-| `GET`  | `/url/{code}/qrcode` | Gera um QR Code da URL encurtada          |
-| `GET`  | `/r/{code}`          | Redireciona para a URL original           |
-| `POST` | `/ai/summary`        | Gera uma prévia automática do link com IA |
-
-A documentação interativa completa fica disponível em:
-
-```txt
-http://127.0.0.1:8000/docs
-```
-
 ---
 
 ## Exemplos de uso
 
-### Criar uma URL encurtada
+### Criar URL encurtada
 
 ```bash
 curl -X POST http://127.0.0.1:8000/url \
@@ -224,7 +196,7 @@ curl -X POST http://127.0.0.1:8000/url \
   -d '{"url": "https://fastapi.tiangolo.com/"}'
 ```
 
-Exemplo de resposta:
+Resposta:
 
 ```json
 {
@@ -233,41 +205,13 @@ Exemplo de resposta:
 }
 ```
 
----
-
-### Consultar a URL original
-
-```bash
-curl http://127.0.0.1:8000/url/aBcDeFgH
-```
-
-Exemplo de resposta:
-
-```json
-{
-  "url": "https://fastapi.tiangolo.com/"
-}
-```
-
----
-
-### Redirecionar para a URL original
-
-```bash
-curl -I http://127.0.0.1:8000/r/aBcDeFgH
-```
-
-Esse endpoint redireciona para a URL original e incrementa a contagem de acessos.
-
----
-
 ### Consultar estatísticas
 
 ```bash
 curl http://127.0.0.1:8000/url/aBcDeFgH/stats
 ```
 
-Exemplo de resposta:
+Resposta:
 
 ```json
 {
@@ -279,17 +223,11 @@ Exemplo de resposta:
 }
 ```
 
----
-
 ### Gerar QR Code
 
 ```bash
 curl http://127.0.0.1:8000/url/aBcDeFgH/qrcode --output qrcode.png
 ```
-
-Esse endpoint retorna uma imagem PNG contendo o QR Code da URL encurtada.
-
----
 
 ### Gerar prévia com IA
 
@@ -299,7 +237,7 @@ curl -X POST http://127.0.0.1:8000/ai/summary \
   -d '{"url": "https://pt.wikipedia.org/wiki/Lobo-guar%C3%A1"}'
 ```
 
-Exemplo de resposta:
+Resposta:
 
 ```json
 {
@@ -314,15 +252,15 @@ Exemplo de resposta:
 
 ## Como funciona a prévia com IA
 
-A prévia automática acessa a página informada, extrai o conteúdo textual e envia esse conteúdo para um modelo local via Ollama.
+A API acessa a página informada, extrai o conteúdo textual e envia esse texto para um modelo local via Ollama.
 
-A extração de conteúdo usa uma estratégia em camadas:
+A extração é feita em camadas:
 
 1. Metadados da página, como Open Graph e Twitter Cards;
 2. Conteúdo semântico, como `article`, `main` e containers comuns de artigos;
 3. Texto do `body` como fallback.
 
-Essa abordagem reduz ruídos como menus, scripts, rodapés e elementos de navegação, deixando os resumos mais consistentes.
+Essa estratégia reduz ruídos como menus, scripts e rodapés, deixando os resumos mais consistentes.
 
 ---
 
@@ -334,41 +272,19 @@ Para rodar os testes:
 pytest
 ```
 
-Os testes cobrem fluxos como:
-
-* Criação de URL encurtada
-* Validação de URL inválida
-* Busca da URL original
-* Consulta de estatísticas
-* Redirecionamento
-* Incremento de cliques
-* Erros esperados para códigos inexistentes
+Os testes cobrem os principais fluxos da API, incluindo criação de URL, busca por código, estatísticas, redirecionamento, incremento de cliques e erros esperados.
 
 ---
 
-## Limitações conhecidas
+## Limitações
 
 * A extração de conteúdo não executa JavaScript.
-* Páginas protegidas por login, captcha ou bloqueio anti-bot podem não gerar prévia.
+* Páginas com login, captcha ou bloqueio anti-bot podem não gerar prévia.
 * A geração de prévia depende do Ollama estar em execução.
 * O campo `shorted_url` foi mantido por compatibilidade interna do projeto.
-
----
-
-## Próximos passos
-
-* Adicionar autenticação de usuários
-* Criar painel web para gerenciamento das URLs
-* Armazenar prévias geradas para evitar reprocessamento
-* Adicionar cache para links já analisados
-* Expandir a cobertura de testes
-* Melhorar a nomenclatura pública de `shorted_url` para `short_url`
 
 ---
 
 ## Autor
 
 Desenvolvido por **Maurino Martins**.
-
-```
-```
