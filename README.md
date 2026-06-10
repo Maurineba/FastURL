@@ -156,7 +156,7 @@ Em ambiente local, ela pode ser configurada assim:
 
 ~~~env
 APP_BASE_URL=http://127.0.0.1:8000
-
+~~~
 Isso funciona no próprio computador, mas pode não funcionar ao ler o QR Code pelo celular, pois 127.0.0.1 no celular aponta para o próprio celular, não para a máquina onde a API está rodando.
 
 Para testar o QR Code em outro dispositivo, utilize uma URL acessível externamente, como um túnel do ngrok:
