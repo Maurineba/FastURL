@@ -31,7 +31,7 @@ class UrlService():
       self.url_repo = UrlRepository(db)
       self.base_url = settings.app.base_url
       self.CODE_LENGTH = 8
-      self.url_expiration_time = settings.url.expiration_days 
+      self.url_expiration_time = settings.url.expiration_days
 
    async def _generate_unique_code(self):
       attempts = 1
@@ -75,7 +75,6 @@ class UrlService():
 
       except Exception as error:
          await self.db.rollback()
-         print("erro inesperado:", error)
          raise
 
 
