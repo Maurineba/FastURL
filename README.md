@@ -161,15 +161,21 @@ Isso funciona no próprio computador, mas pode não funcionar ao ler o QR Code p
 
 Para testar o QR Code em outro dispositivo, utilize uma URL acessível externamente, como um túnel do ngrok:
 
+```bash
 ngrok http 8000
+```
 
 Depois configure o .env com a URL gerada:
 
+~~~env
 APP_BASE_URL=https://seu-dominio-ngrok.ngrok-free.dev
+~~~
 
 Também é possível usar o IP da máquina na rede local, caso o computador e o celular estejam conectados à mesma rede:
 
+~~~env
 APP_BASE_URL=http://192.168.0.10:8000
+~~~
 
 A prévia com IA não depende diretamente do ngrok. Ela pode receber uma URL original ou uma URL encurtada. Quando recebe uma URL encurtada, a aplicação segue o redirecionamento e extrai o conteúdo da página final.
 
